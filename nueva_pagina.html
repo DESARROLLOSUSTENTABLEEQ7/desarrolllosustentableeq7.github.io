@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluaciones - Desarrollo Sustentable Eq. 7</title>
+    <style>
+        html, body {
+            height: 100%; /* Asegura que el html y body cubran todo el viewport */
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+            transition: background 1s ease;
+            position: relative;
+            overflow: hidden; /* Evita desplazamientos no deseados */
+        }
+        h1 {
+            color: #6bbf59;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6bbf59;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #58a94d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #6bbf59;
+            color: white;
+        }
+        td input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .total-cell {
+            font-weight: bold;
+        }
+        .rubric-button {
+            padding: 5px 10px;
+            background-color: #6bbf59;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .rubric-button:hover {
+            background-color: #58a94d;
+        }
+        /* Imagen de fondo */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('fondo.jpeg'); /* Cambia la ruta según corresponda */
+            background-size: cover; /* Asegura que la imagen cubra todo */
+            background-position: center;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Imagen de fondo -->
+    <div class="background-image" id="background-image"></div>
+
+    <!-- Formulario de inicio de sesión -->
+    <div class="login-container" id="login-container">
+        <h2>Iniciar sesión</h2>
+        <input type="text" id="email" placeholder="Correo electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="authenticate()">Ingresar</button>
+    </div>
+
+    <script>
+        function authenticate() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === "12345" && password === "12345") {
+                // Ocultar imagen de fondo y formulario de login
+                document.getElementById("background-image").style.display = "none";
+                document.getElementById("login-container").style.display = "none";
+
+                // Mostrar contenido principal
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Correo o contraseña incorrectos");
+            }
+        }
+
+        function calcularTotal(fila) {
+            const inputs = fila.querySelectorAll('input[type="text"]');
+            const totalCell = fila.querySelector('.total-cell');
+            let total = 0;
+
+            const pesos = [0.20, 0.15, 0.25, 0.40]; // Pesos de cada evaluación
+            inputs.forEach((input, index) => {
+                const value = parseFloat(input.value) || 0;
+                total += value * pesos[index];
+            });
+
+            totalCell.textContent = total.toFixed(2);
+        }
+
+        function inicializarTotales() {
+            const filas = document.querySelectorAll('tbody tr');
+            filas.forEach(fila => calcularTotal(fila));
+        }
+    </script>
+
+    <!-- Contenido principal oculto -->
+    <div id="content" style="display: none;">
+        <h1>Evaluaciones - Desarrollo Sustentable Eq. 7</h1>
+        <div class="subtitle">Docente: Sandra del Valle Ramírez</div>
+        <div class="subtitle">Grupo: 3301</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Nombre del Alumno</th>
+                    <th>Rúbricas</th>
+                    <th>Evaluación Continua</th>
+                    <th>Actividades</th>
+                    <th>Prácticas</th>
+                    <th>Examen</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>23090027</td>
+                    <td>Almaraz Ocelo Francisco</td>
+                    <td><a class="rubric-button" href="https://teshuixquilucan-my.sharepoint.com/personal/sandra_d_r_huixquilucan_tecnm_mx/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fsandra%5Fd%5Fr%5Fhuixquilucan%5Ftecnm%5Fmx%2FDocuments%2FSemestre%202024%5F2%2FDESARROLLO%20SUSTENTABLE%203301%2FEQUIPO7%5FALMARAZ%20OCELO%20FRANCISCO" target="_blank">Abrir</a></td>
+                    <td><input type="text" value="80" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="90" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="85" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="70" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td class="total-cell">0</td>
+                </tr>
+                <tr>
+                    <td>23090045</td>
+                    <td>Arroyo Pereyda Oscar</td>
+                    <td><a class="rubric-button" href="https://teshuixquilucan-my.sharepoint.com/personal/sandra_d_r_huixquilucan_tecnm_mx/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fsandra%5Fd%5Fr%5Fhuixquilucan%5Ftecnm%5Fmx%2FDocuments%2FSemestre%202024%5F2%2FDESARROLLO%20SUSTENTABLE%203301%2FEQUIPO7%5FARROYO%20PEREYDA%20OSCAR" target="_blank">Abrir</a></td>
+                    <td><input type="text" value="75" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="88" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="80" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="90" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td class="total-cell">0</td>
+                </tr>
+                <tr>
+                    <td>23090101</td>
+                    <td>Castañeda Jimenez Itzel</td>
+                    <td><a class="rubric-button" href="https://teshuixquilucan-my.sharepoint.com/personal/sandra_d_r_huixquilucan_tecnm_mx/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fsandra%5Fd%5Fr%5Fhuixquilucan%5Ftecnm%5Fmx%2FDocuments%2FSemestre%202024%5F2%2FDESARROLLO%20SUSTENTABLE%203301%2FEQUIPO7%5FCASTANEDA%20JIMENEZ%20ITZEL" target="_blank">Abrir</a></td>
+                    <td><input type="text" value="90" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="88" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="80" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="86" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td class="total-cell">0</td>
+                </tr>
+                <td>23090797</td>
+                    <td>Mendoza Patiño Angel Yahir</td>
+                    <td><a class="rubric-button" href="https://teshuixquilucan-my.sharepoint.com/personal/sandra_d_r_huixquilucan_tecnm_mx/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fsandra%5Fd%5Fr%5Fhuixquilucan%5Ftecnm%5Fmx%2FDocuments%2FSemestre%202024%5F2%2FDESARROLLO%20SUSTENTABLE%203301%2FEQUIPO7%5FCASTANEDA%20JIMENEZ%20ITZEL" target="_blank">Abrir</a></td>
+                    <td><input type="text" value="90" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="88" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="80" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td><input type="text" value="86" oninput="calcularTotal(this.parentElement.parentElement)"></td>
+                    <td class="total-cell">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>inicializarTotales();</script>
+    <footer>
+        © 2024 Desarrollo Sustentable EQ.7 ALMARAZ OCELO FRANCISCO, ARROYO PEREYDA OSCAR, CASTAÑEDA JIMENEZ ITZEL, MENDOZA PATIÑO ANGEL YAHIR
+    </footer>
+</body>
+</html>
+

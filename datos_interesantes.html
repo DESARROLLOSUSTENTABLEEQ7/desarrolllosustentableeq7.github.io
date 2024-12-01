@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Interesantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #07bd20;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section.introduccion {
+            margin-bottom: 26px;
+        }
+
+        section.introduccion h2 {
+            font-size: 26px;
+        }
+
+        section.introduccion p {
+            font-size: 28px;
+            color: #333;
+        }
+
+        
+        .slider-wrapper {
+            position: relative;
+            max-width: 1800px; 
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .slider {
+            position: relative;
+        }
+
+        .slider img {
+            width: 100%;
+            max-height: 800px; 
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slider .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black; 
+            font-size: 22px; 
+            text-align: center;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .slider-nav button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-nav button.active {
+            background-color: #07bd20;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Datos Interesantes</h1>
+    </header>
+    <main>
+        <section class="introduccion">
+            <h2>Introducción</h2>
+            <p>Este proyecto analiza la cantidad de papel que se desecha en el edificio de ISC del Tecnológico de Estudios Superiores de Huixquilucan...</p>
+        </section>
+
+        <section class="">
+            <h2></h2>
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <div class="slide" style="display: block;">
+                        <img src="imagen1.jpeg" alt="Conclusión de Francisco">
+                        <div class="text-overlay">Conclusión de Francisco:Reciclar papel es esencial para reducir la contaminación, preservar los recursos naturales y disminuir la tala de árboles. Durante este semestre, en los proyectos de Desarrollo Sustentable se utilizaron 40 hojas, una cifra que, aunque parece pequeña, se suma a la cantidad de papel desechado diariamente. Es necesario reflexionar sobre nuestros hábitos de consumo; si no adoptamos prácticas responsables como el reciclaje, seguimos contribuyendo al problema en lugar de buscar soluciones.</div>
+                    </div>
+                    <div class="slide" style="display: none;">
+                        <img src="imagen2.jpeg" alt="Conclusión de Oscar">
+                        <div class="text-overlay">Conclusión de Oscar:
+                            Reciclar papel es importante porque ayuda a reducir la basura y a cuidar recursos como el agua y la energía. Este semestre, se usaron 40 hojas en los proyectos de Desarrollo Sustentable, lo que muestra que podemos aprovechar mejor el papel. Sin embargo, el reto es que todos cambiemos nuestra forma de pensar y hagamos acciones para cuidar el medio ambiente, no solo hablar de ello. </div>
+                    </div>
+                    <div class="slide" style="display: none;">
+                        <img src="imagen3.jpeg" alt="Conclusión de Itzel">
+                        <div class="text-overlay">Conclusión de Itzel:El reciclaje de papel es clave para cuidar el medio ambiente, ya que reduce la cantidad de basura y evita la tala excesiva de árboles. En este semestre, se utilizaron 40 hojas en proyectos, lo que representa una pequeña fracción del papel que se desecha en la institución. Si bien un programa de reciclaje puede ser efectivo, su éxito dependerá de la disposición de todos para participar y comprometerse genuinamente con un cambio en sus hábitos.</div>
+                    </div>
+                    <div class="slide" style="display: none;">
+                        <img src="imagen4.jpeg" alt="Conclusión de Ángel">
+                        <div class="text-overlay">Conclusión de Angel:La reutilización del papel es vital para disminuir la generación de residuos y fomentar una economía más sostenible. Este semestre se gastaron 40 hojas solo en proyectos, un ejemplo del impacto del consumo académico. Sin embargo, para que el reciclaje sea una realidad, debemos cuestionar nuestras prácticas actuales y asumir responsabilidad individual y colectiva en la reducción del desperdicio. Reflexionar no es suficiente; necesitamos actuar.</div>
+                    </div>
+                </div>
+
+                <div class="slider-nav">
+                    <button aria-label="Ver imagen 1" class="active"></button>
+                    <button aria-label="Ver imagen 2"></button>
+                    <button aria-label="Ver imagen 3"></button>
+                    <button aria-label="Ver imagen 4"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; © 2024 Desarrollo Sustentable EQ.7 ALMARAZ OCELO FRANCISCO, ARROYO PEREYDA OSCAR, CASTAÑEDA JIMENEZ ITZEL, MENDOZA PATIÑO ANGEL YAHIR - Tecnológico de Estudios Superiores de Huixquilucan</p>
+    </footer>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const navButtons = document.querySelectorAll('.slider-nav button');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+
+            navButtons.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
+        }
+
+        navButtons.forEach((button, index) => {
+            button.addEventListener('click', () => showSlide(index));
+        });
+
+        
+        showSlide(0);
+    </script>
+</body>
+</html>
+
